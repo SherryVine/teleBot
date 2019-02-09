@@ -50,7 +50,8 @@ def unknown(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
 
 def main():
-    updater = Updater('714917830:AAFHnbU33XN3s0yE_sFxDM_AcfFJuUPkioI')
+    TOKEN = '714917830:AAFHnbU33XN3s0yE_sFxDM_AcfFJuUPkioI'
+    updater = Updater(TOKEN)
     dp = updater.dispatcher
 
     dp.add_handler(CommandHandler('bop',bop))
@@ -59,7 +60,10 @@ def main():
     dp.add_handler(InlineQueryHandler(inline_caps))
     dp.add_handler(MessageHandler(Filters.command, unknown))
 
-    updater.start_polling()
+    updater.start_webhook(listen="0.0.0.0",
+                          port=5000,
+                          url_path=TOKEN)
+    updater.bot.setWebhook("https://{}.herokuapp.com/{}".format('hikipedia', TOKEN))
     updater.idle()
 
 if __name__ == '__main__':
