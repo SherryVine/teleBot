@@ -2,7 +2,6 @@ from telegram.ext import *
 from telegram import InlineQueryResultArticle, InputTextMessageContent
 import requests
 import re
-from key import yourToken
 
 contents = requests.get('https://random.dog/woof.json').json()
 image_url = contents['url']
@@ -51,7 +50,7 @@ def unknown(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
 
 def main():
-    updater = Updater(yourToken)
+    updater = Updater('714917830:AAFHnbU33XN3s0yE_sFxDM_AcfFJuUPkioI')
     dp = updater.dispatcher
 
     dp.add_handler(CommandHandler('bop',bop))
